@@ -1,8 +1,9 @@
 "use strict";
 
-const cheacker = function (gussednumber, randomnumber) {
-  if (gussednumber === randomnumber) {
+const cheacker = function (guessednumber, randomnumber) {
+  if (guessednumber === randomnumber) {
     document.querySelector(".message").textContent = "🎉Correct Number";
+    document.querySelector(".number").textContent = guessednumber;
     document.querySelector(".score").textContent =
       Number(document.querySelector(".score").textContent) + 1;
     if (
@@ -12,25 +13,15 @@ const cheacker = function (gussednumber, randomnumber) {
       document.querySelector(".highscore").textContent =
         document.querySelector(".score").textContent;
     }
-  } else {
-    if (gussednumber >= randomnumber) {
-      if (gussednumber >= randomnumber + 3)
-        document.querySelector(".message").textContent = "Too low";
-      else document.querySelector(".message").textContent = "Lower";
-    } else {
-      if (gussednumber + 3 <= randomnumber)
-        document.querySelector(".message").textContent = "Too High";
-      else document.querySelector(".message").textContent = "Higher";
-    }
-  }
+  } else if (guessednumber >= randomnumber)
+    document.querySelector(".message").textContent = "Lower";
+  else document.querySelector(".message").textContent = "Higher";
 };
 
 let randomnumber = Math.trunc(Math.random() * 20) + 1;
-document.querySelector(".number").textContent = randomnumber;
+let score = 20;
 
 document.querySelector(".check").addEventListener("click", function () {
-  let score = Number(document.querySelector(".score").textContent);
-  const randomnumber = Number(document.querySelector(".number").textContent);
   const guessednumber = Number(document.querySelector(".guess").value);
   if (!guessednumber || guessednumber <= 0 || guessednumber > 20) {
     document.querySelector(".message").textContent =
@@ -43,7 +34,9 @@ document.querySelector(".check").addEventListener("click", function () {
 });
 
 document.querySelector(".again").addEventListener("click", function () {
-  document.querySelector(".score").textContent = 20;
-  document.querySelector(".number").textContent =
-    Math.trunc(Math.random() * 20) + 1;
+  score = 20;
+  randomnumber = Math.trunc(Math.random() * 20) + 1;
+  document.querySelector(".number").textContent = "?";
+  document.querySelector(".score").textContent = score;
+  document.querySelector(".message").textContent = "Start guessing...";
 });
