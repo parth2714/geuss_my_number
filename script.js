@@ -2,6 +2,7 @@
 
 const cheacker = function (guessednumber, randomnumber) {
   if (guessednumber === randomnumber) {
+    document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".message").textContent = "🎉Correct Number";
     document.querySelector(".number").textContent = guessednumber;
     document.querySelector(".score").textContent =
@@ -36,6 +37,7 @@ document.querySelector(".check").addEventListener("click", function () {
 document.querySelector(".again").addEventListener("click", function () {
   score = 20;
   randomnumber = Math.trunc(Math.random() * 20) + 1;
+  document.querySelector("body").style.backgroundColor = "black";
   document.querySelector(".number").textContent = "?";
   document.querySelector(".score").textContent = score;
   document.querySelector(".message").textContent = "Start guessing...";
