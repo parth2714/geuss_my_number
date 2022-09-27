@@ -32,8 +32,13 @@ document.querySelector(".check").addEventListener("click", function () {
       "❗ input a valid number 1 to 20";
   } else {
     score--;
-    document.querySelector(".score").textContent = score;
-    cheacker(guessednumber, randomnumber);
+    if (score >= 0) {
+      document.querySelector(".score").textContent = score;
+      cheacker(guessednumber, randomnumber);
+    } // if the score goes blow 0
+    else
+      document.querySelector(".message").textContent =
+        "✨ you lost Please try again";
   }
 });
 // when player clicks on again
