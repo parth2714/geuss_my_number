@@ -2,6 +2,7 @@
 
 const cheacker = function (guessednumber, randomnumber) {
   if (guessednumber === randomnumber) {
+    //if player wins
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".message").textContent = "🎉Correct Number";
     document.querySelector(".number").textContent = guessednumber;
@@ -14,7 +15,8 @@ const cheacker = function (guessednumber, randomnumber) {
       document.querySelector(".highscore").textContent =
         document.querySelector(".score").textContent;
     }
-  } else if (guessednumber >= randomnumber)
+  } else if (guessednumber > randomnumber)
+    //if player loses
     document.querySelector(".message").textContent = "Lower";
   else document.querySelector(".message").textContent = "Higher";
 };
@@ -22,6 +24,7 @@ const cheacker = function (guessednumber, randomnumber) {
 let randomnumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 
+//when player clicks on check
 document.querySelector(".check").addEventListener("click", function () {
   const guessednumber = Number(document.querySelector(".guess").value);
   if (!guessednumber || guessednumber <= 0 || guessednumber > 20) {
@@ -33,10 +36,11 @@ document.querySelector(".check").addEventListener("click", function () {
     cheacker(guessednumber, randomnumber);
   }
 });
-
+// when player clicks on again
 document.querySelector(".again").addEventListener("click", function () {
   score = 20;
   randomnumber = Math.trunc(Math.random() * 20) + 1;
+  document.querySelector(".guess").value = "";
   document.querySelector("body").style.backgroundColor = "black";
   document.querySelector(".number").textContent = "?";
   document.querySelector(".score").textContent = score;
